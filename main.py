@@ -26,9 +26,7 @@ try:
             correct_guesses.append(answer_state)
         if answer_state == "Quit".title() or answer_state == "exit".title():
             screen.bye()
-            for state in states:
-                if state not in correct_guesses:
-                    states_to_learn["States"].append(state)
+            states_to_learn = [state for state in states if state not in correct_guesses]
             states_to_learn_df = pd.DataFrame(states_to_learn)
             states_to_learn_df.to_csv("capitals_to_learn.csv")
             raise "You Quit!"
